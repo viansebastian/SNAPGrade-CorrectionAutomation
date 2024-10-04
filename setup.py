@@ -1,3 +1,4 @@
+# BUILD TO CYTHON
 from distutils.core import setup
 from Cython.Build import cythonize
 from setuptools.extension import Extension
