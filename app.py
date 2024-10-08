@@ -2,9 +2,11 @@ import cv2
 import numpy as np
 import base64
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from main_pipelines import main_circles_pipeline
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/process-circles', methods=['POST'])
 def process_circles():
@@ -43,3 +45,6 @@ def process_circles():
     }
 
     return jsonify(response)  
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)
