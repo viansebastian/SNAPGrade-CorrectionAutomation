@@ -1,9 +1,9 @@
 import cv2 
 import numpy as np
 
-# print(np.__version__)
+print(np.__version__)
 
-from base_preprocessing_modules import (
+from core_modules.base_preprocessing_modules import (
     gaussian_blur, 
     adaptive_gaussian_blur, 
     clahe_equalization,
@@ -125,4 +125,4 @@ def final_scoring(new_student, processed_student, master_contours):
   student_correction = cv2.cvtColor(new_student, cv2.COLOR_GRAY2BGR)
   student_correction = draw_full_contours(master_contours, student_correction)
 
-  return final_score, student_correction
+  return final_score, student_correction, total_questions, mistakes
