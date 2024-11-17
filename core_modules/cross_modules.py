@@ -7,13 +7,13 @@ from core_modules.base_preprocessing_modules import soft_morph_open
 print(cv2.__version__)
 print(np.__version__)
 
-def model():
-    try:
-        model = YOLO("C:/Users/vian8/Desktop/Tugas2/SNAPGRADE/model/yolo/best.pt")
-        return model
-    except Exception as e:
-        print(f"Error loading YOLO model: {e}")
-        return None
+# def model():
+#     try:
+#         model = YOLO("C:/Users/vian8/Desktop/Tugas2/SNAPGRADE/model/yolo/best.pt")
+#         return model
+#     except Exception as e:
+#         print(f"Error loading YOLO model: {e}")
+#         return None
 
 def yolo_catch_image(model, image): 
     input = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
