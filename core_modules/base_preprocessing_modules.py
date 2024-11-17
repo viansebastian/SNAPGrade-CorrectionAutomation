@@ -159,3 +159,42 @@ def image_uniformization(master_image, student_image):
   print(f'master_key {master_image.shape} and student_answer {student_image.shape} uniformed to {resized_master.shape}')
 
   return resized_master, resized_student
+
+def morph_open(image):
+  kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
+  eroded_img = cv2.erode(image, kernel, iterations = 1)
+  dilated_img = cv2.dilate(eroded_img, kernel, iterations = 1)
+
+  return dilated_img
+
+def soft_morph_open(image):
+  kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
+  eroded_img = cv2.erode(image, kernel, iterations = 1)
+  dilated_img = cv2.dilate(eroded_img, kernel, iterations = 1)
+
+  return dilated_img
+
+def core_preprocessing(image):
+  '''Core Preprocessing Module'''
+  blurred_img = gaussian_blur(image, mode='Hard')
+  contrast_img = contrast_stretching(blurred_img)
+  log_img = logarithmic_transformation(contrast_img)
+  binary_img = otsu_thresholding(log_img)
+  opened_img = morph_open(binary_img)
+
+  return opened_img
+
+def core_preprocessing_v2(image):
+  '''
+  Core Preprocessing Module V2:
+  - Uses CLAHE for lighting handling
+  - Uses Adaptive Gaussian Blur to ensure optimal thresholding
+  '''
+  clahe_img = clahe_equalization(image)
+  blurred_img = adaptive_gaussian_blur(clahe_img, desired_blur=100, max_iterations=100)
+  contrast_img = contrast_stretching(blurred_img)
+  log_img = logarithmic_transformation(contrast_img)
+  binary_img = otsu_thresholding(log_img)
+  opened_img = morph_open(binary_img)
+
+  return opened_img
