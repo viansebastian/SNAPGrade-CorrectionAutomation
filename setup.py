@@ -1,3 +1,18 @@
+"""
+Author  : Vian Sebastian B
+Version : 1
+Date    : 17/11/2024
+
+"setup.py "
+This module contains cython configuration
+
+Key Components:
+- Python to Cython
+
+Usage:
+- Serves to translate Python to Cython
+"""
+
 # BUILD TO CYTHON
 from distutils.core import setup
 from Cython.Build import cythonize

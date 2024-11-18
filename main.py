@@ -1,13 +1,23 @@
+"""
+Author  : Vian Sebastian B
+Version : 1
+Date    : 17/11/2024
+
+"main.py "
+This module contains circle-specific handling functions
+
+Key Components:
+- Blob detection and handling
+- Scoring computation
+
+Usage:
+- Serves as circle-specific handling module
+"""
+
 import cv2
 import time
 from main_pipelines import main_circles_pipeline, main_cross_pipeline
 from ultralytics import YOLO 
-
-# from backup.main_circles_processing import main_circles_pipeline
-# from circles_usage_cy import main_circles_pipeline
-
-# answer1 = cv2.imread('inputs/circle_1/stu_good_light.jpg')
-# master_sheet = cv2.imread('inputs/circle_1/master_circle_best.jpg')
 
 model_instance = YOLO("C:/Users/vian8/Desktop/Tugas2/SNAPGRADE/model/yolo/best.pt")
 
