@@ -16,6 +16,7 @@ Usage:
 """
 
 import cv2
+import os
 import numpy as np
 import base64
 from flask import Flask, request, jsonify
@@ -43,7 +44,8 @@ def load_model():
     """
     global model_instance
     try:
-        model_instance = YOLO("C:/Users/vian8/Desktop/Tugas2/SNAPGRADE/model/yolo/best.pt")
+        # model_path = os.getenv("MODEL_PATH", "/mnt/storage/best.pt")
+        model_instance = YOLO('model/yolo/best.pt')
         print("YOLO model loaded successfully.")
     except Exception as e:
         print(f"Error loading YOLO model: {e}")
@@ -151,4 +153,4 @@ def process_cross():
     return jsonify(response)  
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(host="0.0.0.0", debug=True, port=5000)
