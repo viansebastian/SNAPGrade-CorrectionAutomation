@@ -28,8 +28,8 @@ Usage:
 import cv2
 import numpy as np
 
-# print(cv2.__version__)
-# print(np.__version__)
+print(cv2.__version__)
+print(np.__version__)
 
 
 def resize_image(image, target_size=(800, 1000)):
