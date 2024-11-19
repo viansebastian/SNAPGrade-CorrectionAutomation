@@ -17,6 +17,7 @@ Usage:
 
 import cv2
 import os
+import sys 
 import numpy as np
 import base64
 from flask import Flask, request, jsonify
@@ -49,6 +50,10 @@ def load_model():
         print("YOLO model loaded successfully.")
     except Exception as e:
         print(f"Error loading YOLO model: {e}")
+
+@app.route('/', methods=['GET'])
+def index():
+    return 'SNAPGRADE'
 
 @app.route('/process-circles', methods=['POST'])
 def process_circles():
@@ -153,4 +158,4 @@ def process_cross():
     return jsonify(response)  
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", debug=True, port=5000)
+    app.run(debug=True, port=5000)
