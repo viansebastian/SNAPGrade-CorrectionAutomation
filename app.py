@@ -26,7 +26,8 @@ from ultralytics import YOLO
 from main_pipelines import main_circles_pipeline, main_cross_pipeline
 
 app = Flask(__name__)
-CORS(app)
+# CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 model_instance = None
 
