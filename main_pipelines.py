@@ -16,6 +16,7 @@ Usage:
 """
 
 from core_modules.base_preprocessing_modules import (
+    automatic_warp_transformation,
     automatic_warp_transformation_v2,
     image_uniformization,
     core_preprocessing_v2)
@@ -44,8 +45,8 @@ def main_circles_pipeline(answer_key, student_answer):
     - detected_total_questions (int): Total number of questions detected on the answer sheet.
     - detected_mistakes (int): Number of mistakes detected in the student's answers.
     """
-    master_key = automatic_warp_transformation_v2(answer_key)
-    student_sheet = automatic_warp_transformation_v2(student_answer)
+    master_key = automatic_warp_transformation(answer_key)
+    student_sheet = automatic_warp_transformation(student_answer)
     new_master, new_student = image_uniformization(master_key, student_sheet)
     processed_master = core_preprocessing_v2(new_master)
     processed_student = core_preprocessing_v2(new_student)

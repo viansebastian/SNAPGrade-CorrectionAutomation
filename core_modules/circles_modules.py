@@ -17,7 +17,7 @@ Usage:
 
 import numpy as np
 import cv2
-from core_modules.base_preprocessing_modules import soft_morph_open
+from core_modules.base_preprocessing_modules import morph_open
 
 
 def draw_full_contours(contours, cont_image, radius=7):
@@ -130,7 +130,7 @@ def final_scoring(new_student, processed_student, master_contours):
     # processing mistake location and count
     test_answer = processed_student.copy()
     check_answers = draw_full_contours(master_contours, test_answer)
-    final_sheet = soft_morph_open(check_answers)
+    final_sheet = morph_open(check_answers)
     final_contours, _ = extract_and_draw_circle_contours(final_sheet)
 
     # mistakes, etc. computation

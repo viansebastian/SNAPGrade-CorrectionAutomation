@@ -16,8 +16,6 @@ Usage:
 """
 
 import cv2
-import os
-import sys 
 import numpy as np
 import base64
 from flask import Flask, request, jsonify
