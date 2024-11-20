@@ -1,8 +1,8 @@
 # pylint: disable=no-member
 """
 Author  : Vian Sebastian B
-Version : 1
-Date    : 17/11/2024
+Version : 2
+Date    : 20/11/2024
 
 "main_pipelines.py "
 This module contains the main pipelines for circle and cross handling
@@ -13,6 +13,8 @@ Key Components:
 
 Usage:
 - Serves as main module for automatic grading pipeline
+
+V1 - V2: main_circle_pipeline uses warp v1
 """
 
 from core_modules.base_preprocessing_modules import (

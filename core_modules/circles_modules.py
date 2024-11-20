@@ -1,8 +1,8 @@
 # pylint: disable=no-member
 """
 Author  : Vian Sebastian B
-Version : 1
-Date    : 17/11/2024
+Version : 2
+Date    : 20/11/2024
 
 "circles_modules.py "
 This module contains circle-specific handling functions
@@ -13,6 +13,8 @@ Key Components:
 
 Usage:
 - Serves as circle-specific handling module
+
+V1 - V1: final_score round to 2 dec points
 """
 
 import numpy as np
@@ -138,6 +140,7 @@ def final_scoring(new_student, processed_student, master_contours):
     total_questions = len(master_contours)
     print(f'total_questions: {total_questions}, mistakes: {mistakes}')
     final_score = ((total_questions - mistakes) / total_questions) * 100
+    final_score = round(final_score, 2)
     print(f'final score: {final_score}')
 
     # retrieve student correction
