@@ -1,8 +1,8 @@
 # pylint: disable=no-member
 """
 Author  : Vian Sebastian B
-Version : 1
-Date    : 17/11/2024
+Version : 2
+Date    : 20/11/2024
 
 "cross_modules.py "
 This module contains cross-specific handling functions
@@ -14,6 +14,9 @@ Key Components:
 
 Usage:
 - Serves as cross-specific handling module
+
+V1 - V2: utilized avg for box tagging instead of max
+        to avoid overlapping boxes
 """
 
 import numpy as np
@@ -82,6 +85,46 @@ def get_max_width_height(master_coords, student_coords):
     # return max(max_width, max_height)
     return int((max_width + max_height) / 2)
 
+def get_avg_width_height(master_coords, student_coords):
+    """
+    Computes the average width and height from master and student bounding box coordinates.
+
+    Args:
+        master_coords (torch.Tensor or numpy.ndarray): Bounding box coordinates for the master image (center_x, center_y, width, height).
+        student_coords (torch.Tensor or numpy.ndarray): Bounding box coordinates for the student image (center_x, center_y, width, height).
+
+    Returns:
+        float: Average of width and height across both sets of coordinates.
+    """
+    # Combine both sets of coordinates
+    all_coords = (
+        torch.cat([master_coords, student_coords], dim=0)
+        if isinstance(master_coords, torch.Tensor)
+        else np.vstack((master_coords, student_coords))
+    )
+
+    # Initialize variables for summing widths and heights
+    total_width = 0
+    total_height = 0
+    num_coords = all_coords.shape[0]
+
+    # Traverse all bounding box dimensions
+    for coord in all_coords:
+        # Convert tensor to NumPy array if needed
+        if isinstance(coord, torch.Tensor):
+            coord = coord.cpu().numpy()
+        _, _, width, height = coord.astype(int)
+
+        # Sum up width and height
+        total_width += width
+        total_height += height
+
+    # Compute average width and height
+    avg_width = total_width / num_coords
+    avg_height = total_height / num_coords
+
+    # Return the average of width and height
+    return round((avg_width + avg_height) / 2)
 
 def mark_ans_box(
     image,
@@ -266,7 +309,7 @@ def get_cross_answers(model, master_image, student_image):
     _, _, student_coords = yolo_catch_image(
         model, student_image)
 
-    box_size = get_max_width_height(master_coords, student_coords)
+    box_size = get_avg_width_height(master_coords, student_coords)
 
     master_img = mark_ans_box(
         master_image,
