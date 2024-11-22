@@ -21,16 +21,16 @@ from ultralytics import YOLO
 
 model_instance = YOLO("C:/Users/vian8/Desktop/Tugas2/SNAPGRADE/model/yolo/best.pt")
 
-answer_circle = cv2.imread('inputs/circs/student1_crop.jpg')
-master_circle = cv2.imread('inputs/circs/master1_crop.jpg')
+answer_circle = cv2.imread('inputs/circs/master1_crop.jpg')
+master_circle = cv2.imread('inputs/circs/student1_crop.jpg')
 
 t1 = time.time()
 stu_final_score_circle, stu_answer_key_circle, detected_total_questions_circle, detected_mistakes_circle = \
     main_circles_pipeline(master_circle, answer_circle)
 t2 = time.time()
 
-answer_cross = cv2.imread('C:/Users/vian8/Desktop/Tugas2/SNAPGRADE/inputs/cross_data_cropped/9.jpg')
-master_cross = cv2.imread('C:/Users/vian8/Desktop/Tugas2/SNAPGRADE/inputs/cross_data_cropped/8.jpg')
+answer_cross = cv2.imread('C:/Users/vian8/Desktop/Tugas2/SNAPGRADE/inputs/cross_data_raw/cross_data_raw/9.jpg')
+master_cross = cv2.imread('C:/Users/vian8/Desktop/Tugas2/SNAPGRADE/inputs/cross_data_raw/cross_data_raw/8.jpg')
 
 t3 = time.time()
 stu_final_score_cross, stu_answer_key_cross, detected_total_questions_cross, detected_mistakes_cross = \

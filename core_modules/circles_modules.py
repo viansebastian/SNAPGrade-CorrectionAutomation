@@ -14,7 +14,8 @@ Key Components:
 Usage:
 - Serves as circle-specific handling module
 
-V1 - V1: final_score round to 2 dec points
+V1 - V1: final_score round to 2 dec points, 
+        return to warp transform 1
 """
 
 import numpy as np
